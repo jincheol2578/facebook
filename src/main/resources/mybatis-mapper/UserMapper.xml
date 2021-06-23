@@ -4,14 +4,14 @@
 <mapper namespace="com.koreait.facebook.user.UserMapper">
     <insert id="join">
         INSERT INTO t_user
-        (pw, nm, tel, email, authCd)
+            ( email, pw, nm, tel, authCd )
         VALUES
-        (#{pw},#{nm},#{tel},#{email}, #{authCd})
+            ( #{email}, #{pw}, #{nm}, #{tel}, #{authCd} )
     </insert>
 
-    <select id="login">
-        SELECT * from t_user
-        WHERE email = #{email}
+    <select id="selUser" resultType="UserEntity">
+        SELECT * FROM t_user
+        WHERE email = #{email} AND authCd IS NULL
     </select>
 
     <update id="auth">
